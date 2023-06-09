@@ -23,23 +23,18 @@ def extract_information(dynanal):
     return api_calls, evasive_behavior, process_info
 
 def print_api_calls(api_calls):
-    print("##### api_calls: #####")
-    for e in api_calls:
-        print(e)
-        #if event['Type'] == 'INF':
-            #print("Injection event is detected:",event)
+    for a in api_calls:
+        print(a)
     print("########################")
 
-def print_evasive_behavior(evasive_behavior):
-    print("##### evasive_behavior: #####")
-    for category, api_names in evasive_behavior.items():
-        print(f"Category: {category}")
-        for api_name in api_names:
-            print(f"- API Name: {api_name}")
+def print_evasive_behaviour(evasive_behaviour):
+    for category, titles in evasive_behaviour.items():
+        print(f"Evasive Category: {category}")
+        for title in titles:
+            print(f"    Title: {title}")
     print("########################")
 
 def print_process_info(process_info):
-    print("##### process_info: #####")
     print("Process IDs from pidToEvents:", list(process_info['pidToEvents'].keys()))
     print("Process IDs from honeypotEvents:", list(process_info['pidToHoneypotEvents'].keys()))
     print("########################")
@@ -53,8 +48,9 @@ def analyze_malware_samples(pickles_folder):
         dynanal = load_pickle_file(file_path)
         api_calls, evasive_behavior, process_info = extract_information(dynanal)
         print_api_calls(api_calls)
-        print_evasive_behavior(evasive_behavior)
+        print_evasive_behaviour(evasive_behavior)
         print_process_info(process_info)
+        print("\n")
         break # Set to only process 1 subfolder atm
 
 analyze_malware_samples(pickles_folder)

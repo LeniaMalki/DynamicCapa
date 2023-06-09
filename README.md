@@ -1,3 +1,6 @@
+# Project Description
+The aim of the project is to develop a framework capable of scanning API calls made by malware samples and identifying patterns and behaviors that correspond to malware capabilities. The goal is to analyze the dynamic behavior of the malware at runtime by examining the API calls it makes during its execution. By identifying specific patterns and behaviors, it becomes possible to detect and understand the capabilities and intentions of the malware.
+
 # Usage
 
 ## Scripts
