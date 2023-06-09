@@ -51,6 +51,6 @@ def analyze_malware_samples(pickles_folder):
         print_evasive_behaviour(evasive_behavior)
         print_process_info(process_info)
         print("\n")
-        break # Set to only process 1 subfolder atm
+        break # Set to only process 1 .pickle atm
 
 analyze_malware_samples(pickles_folder)
