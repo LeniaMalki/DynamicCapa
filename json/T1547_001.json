@@ -1,0 +1,25 @@
+{
+    "Name": "Boot or Logon Autostart Execution: Registry Run Keys / Startup Folder",
+    "Id": "T1547.001",
+    "Tactics": ["Persistence", "Privilege Escalation"],
+    "Platforms": ["Windows"],
+    "Permission required" : ["Administrator", "User"],
+    "Registry" : {
+        "Type" : ["BEHwA"],
+        "Cat" : ["REGISTRY"],
+        "Sym" : ["NtCreateKey", "NtSetValueKey"],
+        "Arg" : ["\\\\Microsoft\\\\Windows\\\\CurrentVersion\\\\Run$", 
+                "\\\\Microsoft\\\\Windows\\\\CurrentVersion\\\\RunOnce$",
+                "\\\\Microsoft\\\\Windows\\\\CurrentVersion\\\\RunOnceEx$",
+                "\\\\Microsoft\\\\Windows\\\\CurrentVersion\\\\Explorer\\\\User Shell Folders$",
+                "\\\\Microsoft\\\\Windows\\\\CurrentVersion\\\\Explorer\\\\Shell Folders$",
+                "\\\\Microsoft\\\\Windows\\\\CurrentVersion\\\\RunServicesOnce$",
+                "\\\\Microsoft\\\\Windows\\\\CurrentVersion\\\\RunServices$",
+                "\\\\Microsoft\\\\Windows\\\\CurrentVersion\\\\Policies\\\\Explorer\\\\Run$",
+                "\\\\Microsoft\\\\Windows NT\\\\CurrentVersion\\\\Winlogon\\\\Userinit$",
+                "\\\\Microsoft\\\\Windows NT\\\\CurrentVersion\\\\Winlogon\\\\Shell$",
+                "\\\\Microsoft\\\\Windows NT\\\\CurrentVersion\\\\Windows$",
+                "\\\\System\\\\CurrentControlSet\\\\Control\\\\Session Manager$"
+            ]
+    }
+}

@@ -1,0 +1,13 @@
+{
+    "Name": "Boot or Logon Autostart Execution: Authentication Package",
+    "Id": "T1547.002",
+    "Tactics": ["Persistence", "Privilege Escalation"],
+    "Platforms": ["Windows"],
+    "Permission required" : ["Administrator"],
+    "Registry" : {
+        "Type" : ["BEHwA"],
+        "Cat" : ["REGISTRY"],
+        "Sym" : ["NtCreateKey", "NtSetValueKey"],
+        "Arg" : ["\\\\CurrentControlSet\\\\Control\\\\Lsa*$"]
+    }
+}

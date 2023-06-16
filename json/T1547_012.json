@@ -1,0 +1,14 @@
+{
+    "Name": "Boot or Logon Autostart Execution: Print Processors",
+    "Id": "T1547.012",
+    "Tactics": ["Persistence", "Privilege Escalation"],
+    "Platforms": ["Windows"],
+    "Permission required" : ["Administrator", "SYSTEM"],
+    "Registry" : {
+        "Type" : ["BEHwA"],
+        "Cat" : ["REGISTRY"],
+        "Sym" : ["NtCreateKey", "NtSetValueKey"],
+        "Arg" : ["\\\\*\\\\Control\\\\Print\\\\Environments\\\\*\\\\Print Processors\\\\[user defined]\\\\Driver$",
+                "\\\\CurrentControlSet\\\\Control\\\\Print\\\\Environments\\\\*\\\\Print Processors\\\\*\\\\Driver$"]
+    }
+}

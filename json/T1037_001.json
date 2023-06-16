@@ -1,0 +1,12 @@
+{
+    "Name": "Boot or Logon Initialization Scripts: Logon Script",
+    "Id": "T1037.001",
+    "Tactics": ["Persistence", "Privilege Escalation"],
+    "Platforms": ["Windows"],
+    "Registry" : {
+        "Type" : ["BEHwA"],
+        "Cat" : ["REGISTRY"],
+        "Sym" : ["NtCreateKey", "NtSetValueKey"],
+        "Arg" : ["\\\\Environment\\\\UserInitMprLogonScript$"]
+    }
+}

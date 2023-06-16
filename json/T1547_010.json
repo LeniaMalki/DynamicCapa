@@ -1,0 +1,13 @@
+{
+    "Name": "Boot or Logon Autostart Execution: Port Monitors",
+    "Id": "T1547.010",
+    "Tactics": ["Persistence", "Privilege Escalation"],
+    "Platforms": ["Windows"],
+    "Permission required" : ["Administrator", "SYSTEM"],
+    "Registry" : {
+        "Type" : ["BEHwA"],
+        "Cat" : ["REGISTRY"],
+        "Sym" : ["NtCreateKey", "NtSetValueKey"],
+        "Arg" : ["\\\\CurrentControlSet\\\\Control\\\\Print\\\\Monitors$"]
+    }
+}

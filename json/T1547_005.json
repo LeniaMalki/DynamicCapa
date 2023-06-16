@@ -1,0 +1,16 @@
+{
+    "Name": "Boot or Logon Autostart Execution: Security Support Provider",
+    "Id": "T1547.005",
+    "Tactics": ["Persistence", "Privilege Escalation"],
+    "Platforms": ["Windows"],
+    "Permission required" : ["Administrator"],
+    "Registry" : {
+        "Type" : ["BEHwA"],
+        "Cat" : ["REGISTRY"],
+        "Sym" : ["NtCreateKey", "NtSetValueKey"],
+        "Arg" : ["\\\\CurrentControlSet\\\\Control\\\\Lsa\\\\Security Packages$",
+                "\\\\CurrentControlSet\\\\Control\\\\Lsa\\\\OSConfig\\\\Security Packages$",
+                "\\\\Microsoft\\\\Windows NT\\\\CurrentVersion\\\\Image File Execution Options\\\\*$"
+                ]
+    }
+}

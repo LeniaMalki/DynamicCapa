@@ -1,0 +1,13 @@
+{
+    "Name": "Boot or Logon Autostart Execution: Winlogon Helper DLL",
+    "Id": "T1547.004",
+    "Tactics": ["Persistence", "Privilege Escalation"],
+    "Platforms": ["Windows"],
+    "Permission required" : ["Administrator", "SYSTEM"],
+    "param" : {
+        "Type" : ["BEHwA"],
+        "Cat" : ["REGISTRY"],
+        "Sym" : ["NtCreateKey", "NtSetValueKey"],
+        "Arg" : ["\\\\Microsoft\\\\Windows NT\\\\CurrentVersion\\\\Winlogon*$"]
+    }
+}

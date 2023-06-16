@@ -1,0 +1,13 @@
+{
+    "Name": "Boot or Logon Autostart Execution: Time Providers",
+    "Id": "T1547.003",
+    "Tactics": ["Persistence", "Privilege Escalation"],
+    "Platforms": ["Windows"],
+    "Permission required" : ["Administrator", "SYSTEM"],
+    "Registry" : {
+        "Type" : ["BEHwA"],
+        "Cat" : ["REGISTRY"],
+        "Sym" : ["NtCreateKey", "NtSetValueKey"],
+        "Arg" : ["\\\\CurrentControlSet\\\\Services\\\\W32Time\\\\TimeProviders*$"]
+    }
+}

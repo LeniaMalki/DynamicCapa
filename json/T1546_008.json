@@ -1,0 +1,13 @@
+{
+    "Name": "Event Triggered Execution: Accessibility Features",
+    "Id": "T1546.008",
+    "Tactics": ["Persistence", "Privilege Escalation"],
+    "Platforms": ["Windows"],
+    "Permission required" : ["Administrator"],
+    "Registry" : {
+        "Type" : ["BEHwA"],
+        "Cat" : ["REGISTRY"],
+        "Sym" : ["NtCreateKey", "NtSetValueKey"],
+        "Arg" : ["\\\\Microsoft\\\\Windows NT\\\\CurrentVersion\\\\Image File Execution Options$"]
+    }
+}

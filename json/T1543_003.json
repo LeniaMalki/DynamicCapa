@@ -1,0 +1,12 @@
+{
+    "Name": "Create or Modify System Process: Windows Service",
+    "Id": "T1543.003",
+    "Tactics": ["Persistence", "Privilege Escalation"],
+    "Platforms": ["Windows"],
+    "Registry" : {
+        "Type" : ["BEHwA"],
+        "Cat" : ["REGISTRY"],
+        "Sym" : ["NtCreateKey", "NtSetValueKey"],
+        "Arg" : ["\\\\SYSTEM\\\\CurrentControlSet\\\\Services$"]
+    }
+}

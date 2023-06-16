@@ -1,0 +1,14 @@
+{
+    "Name": "Event Triggered Execution: Image File Execution Options Injection",
+    "Id": "T1546.012",
+    "Tactics": ["Persistence", "Privilege Escalation"],
+    "Platforms": ["Windows"],
+    "Permission required" : ["Administrator", "SYSTEM"],
+    "Registry" : {
+        "Type" : ["BEHwA"],
+        "Cat" : ["REGISTRY"],
+        "Sym" : ["NtCreateKey", "NtSetValueKey"],
+        "Arg" : ["\\\\Microsoft\\\\Windows NT\\\\CurrentVersion\\\\Image File Execution Options*$",
+                "\\\\Microsoft\\\\Windows NT\\\\CurrentVersion\\\\SilentProcessExit*$"]
+    }
+}

@@ -1,6 +1,7 @@
 from typing import List, Dict, Optional, Set
 from collections import defaultdict
 import operator
+import re
 
 """
 The DynAnal class represents the dynamic behavior of a malware sample.
@@ -22,6 +23,38 @@ class DynAnal:
 
     def sort_events(self):
         self.orderedEvents.sort(key=operator.itemgetter('Time'))  # Sort events based on the 'Time' key
+
+    def get_all_categories(self):
+        L = []
+        for e in self.orderedEvents:
+            if e['Type'] not in L:
+                L.append(e['Type'])
+        return L
+    
+    def print_spec_type(self, type):
+        for e in self.orderedEvents:
+            if e['Type'] == type:
+                print(e)
+    
+    def find_str_in_arg(self, s):
+        for e in self.orderedEvents:
+            if e['Type'] == 'BEHwA' and e['Cat'] == 'REGISTRY':
+                if e['Arg'] != None:
+                    if s in e['Arg']:
+                        print(e)
+                        #print(f"Symbole: {e['Sym']}\tArgument: {e['Arg']}")
+    
+    def json_registry_match(self, j):
+        for e in self.orderedEvents:
+            if e['Type'] in j["Registry"]["Type"] and e['Cat'] in j["Registry"]["Cat"] and e['Sym'] in j["Registry"]["Sym"]:
+                if e['Arg'] != None and e['Cat'] in j["Registry"]["Cat"]:
+                    for arg in j["Registry"]["Arg"]:
+                        m = re.search(arg, e['Arg'])
+                        if m != None:
+                            print(e)
+                            print(f"Match rule {j['Id']} ({j['Name']})")
+                            print(f"\tSymbole: {e['Sym']}\tArgument: {e['Arg']}")
+                            break
 
     def get_evasive_behaviour(self) -> Dict:
         if self.evasiveBehaviour is not None:

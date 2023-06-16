@@ -1,0 +1,13 @@
+{
+    "Name": "Event Triggered Execution: AppInit DLLs",
+    "Id": "T1546.010",
+    "Tactics": ["Persistence", "Privilege Escalation"],
+    "Platforms": ["Windows"],
+    "Permission required" : ["Administrator"],
+    "Registry" : {
+        "Type" : ["BEHwA"],
+        "Cat" : ["REGISTRY"],
+        "Sym" : ["NtCreateKey", "NtSetValueKey"],
+        "Arg" : ["\\\\Microsoft\\\\Windows NT\\\\CurrentVersion\\\\Windows\\\\Appinit_Dlls*$"]
+    }
+}

@@ -1,0 +1,13 @@
+{
+    "Name": "Boot or Logon Autostart Execution: Active Setup",
+    "Id": "T1547.014",
+    "Tactics": ["Persistence", "Privilege Escalation"],
+    "Platforms": ["Windows"],
+    "Permission required" : ["Administrator"],
+    "Registry" : {
+        "Type" : ["BEHwA"],
+        "Cat" : ["REGISTRY"],
+        "Sym" : ["NtCreateKey", "NtSetValueKey"],
+        "Arg" : ["\\\\Microsoft\\\\Active Setup\\\\Installed Components\\\\*$"]
+    }
+}
