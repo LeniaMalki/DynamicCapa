@@ -33,3 +33,15 @@ Analyzes all the pickle files contained in the specified folder provinding diffe
 - n_of_events: min, max, median, mean, stdev of the number of events executed by all the samples
 - n_of_processes: min, max, median, mean, stdev of number of processes executed by all the samples
 - Evasive: percentage of the different evasion techniques used by all the samples, grouped by category 
+
+# Type of information
+
+- BEH = Behaviour with Sym (symbol)
+    - Cat: 'PROCESS', 'NETWORK', 'MUTEX', 'THREAD'
+- BEHwA = Behaviour with Sym (symbol) and Argument
+    - Cat: 'REGISTRY', 'FILESYSTEM', 'PROCESS', 'MUTEX', 'SERVICE', 'NETWORK'
+- EVA = Evasive 
+    - 'ANTIDUMP', 'ENVIRONMENT PROFILING', 'ANTIDEBUG', 'GENERIC SANDBOX CHECK', 'TIMING ATTACK'
+- ERR = Error 
+
+- INF = Information 
