@@ -1,0 +1,12 @@
+{
+    "Name": "Subvert Trust Controls: Install Root Certificate",
+    "Id": "T1553.004",
+    "Tactics": ["Defense Evasion"],
+    "Platforms": ["Linux", "Windows", "macOS"],
+    "Registry" : {
+        "Type" : ["BEHwA"],
+        "Cat" : ["REGISTRY"],
+        "Sym" : ["NtOpenKeyHook", "NtQueryValueKey", "NtSetValueKey", "NtCreateKey"],
+        "Arg" : ["\\\\Microsoft\\\\EnterpriseCertificates\\\\Root\\\\Certificates\\\\"]
+    }
+}

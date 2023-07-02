@@ -1,0 +1,12 @@
+{
+    "Name": "Impair Defenses: Safe Mode Boot",
+    "Id": "T1562.009",
+    "Tactics": ["Defense Evasion"],
+    "Platforms": ["Windows"],
+    "Registry" : {
+        "Type" : ["BEHwA"],
+        "Cat" : ["REGISTRY"],
+        "Sym" : ["NtOpenKeyHook", "NtQueryValueKey", "NtSetValueKey"],
+        "Arg" : ["\\\\CurrentControlSet\\\\Control\\\\SafeBoot\\\\Minimal"]
+    }
+}

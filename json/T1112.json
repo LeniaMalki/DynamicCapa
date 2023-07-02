@@ -1,0 +1,14 @@
+{
+    "Name": "Modify Registry",
+    "Id": "T1112",
+    "Tactics": ["Defense Evasion"],
+    "Platforms": ["Windows"],
+    "Registry" : {
+        "Type" : ["BEHwA"],
+        "Cat" : ["REGISTRY"],
+        "Sym" : ["NtOpenKeyHook", "NtQueryValueKey", "NtSetValueKey", "NtDeleteKey"],
+        "Arg" : ["\\\\CurrentControlSet\\\\Services\\\\SharedAccess\\\\Parameters\\\\FirewallPolicy\\\\StandardProfileGloballyOpenPorts\\\\List",
+                "\\\\Microsoft\\\\Pnium",
+                "\\\\CurrentControlSet\\\\Services\\\\lanmanserver\\\\parameters\\\\"]
+    }
+}

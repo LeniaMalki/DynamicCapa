@@ -1,0 +1,12 @@
+{
+    "Name": "Impair Defenses: Disable or Modify Tools",
+    "Id": "T1562.001",
+    "Tactics": ["Defense Evasion"],
+    "Platforms": ["Containers", "IaaS", "Linux", "Windows", "macOS"],
+    "Registry" : {
+        "Type" : ["BEHwA"],
+        "Cat" : ["REGISTRY"],
+        "Sym" : ["NtCreateKey", "NtSetValueKey", "NtDeleteKey "],
+        "Arg" : ["\\\\CurrentControlSet\\\\Control\\\\WMI\\\\Autologger\\\\EventLog-Microsoft-Windows-Sysmon-Operational"]
+    }
+}
