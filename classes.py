@@ -77,7 +77,7 @@ class DynAnal:
                         print(e)
                         #print(f"Symbole: {e['Sym']}\tArgument: {e['Arg']}")
     
-    def json_registry_match(self, j):
+    def json_registry_match(self, j, log_file):
         mtch = False
         for e in self.orderedEvents:
             if e['Type'] in j["Registry"]["Type"]:
@@ -85,6 +85,8 @@ class DynAnal:
                     for arg in j["Registry"]["Arg"]:
                         m = re.search(arg, e['Arg'])
                         if m != None:
+                            log = j["Id"] + ',' + j["Name"] + ',' + ','.join(map(str, e.values())) + '\n'
+                            log_file.write(log)
                             #print(e)
                             #print(f"Match rule {j['Id']} ({j['Name']})")
                             #print(f"\tSymbole: {e['Sym']}\tArgument: {e['Arg']}")
@@ -92,7 +94,7 @@ class DynAnal:
                             break
         return mtch
     
-    def json_process_match(self, j):
+    def json_process_match(self, j, log_file):
         mtch = False
         for e in self.orderedEvents:
             if e['Type'] in j["Process"]["Type"]:
@@ -100,6 +102,8 @@ class DynAnal:
                     for arg in j["Process"]["Desc"]:
                         m = re.search(arg, e['Desc'])
                         if m != None:
+                            log = j["Id"] + ',' + j["Name"] + ',' + ','.join(map(str, e.values())) + '\n'
+                            log_file.write(log)
                             #print(e)
                             #print(f"Match rule {j['Id']} ({j['Name']})")
                             #print(f"\Title: {e['Title']}\tDescription: {e['Desc']}")
@@ -107,7 +111,7 @@ class DynAnal:
                             break
         return mtch
     
-    def json_file_match(self, j):
+    def json_file_match(self, j, log_file):
         mtch = False
         for e in self.orderedEvents:
             if e['Type'] in j["Filesystem"]["Type"]:
@@ -115,6 +119,8 @@ class DynAnal:
                     for arg in j["Filesystem"]["Arg"]:
                         m = re.search(arg, e['Arg'])
                         if m != None:
+                            log = j["Id"] + ',' + j["Name"] + ',' + ','.join(map(str, e.values())) + '\n'
+                            log_file.write(log)
                             #print(e)
                             #print(f"Match rule {j['Id']} ({j['Name']})")
                             #print(f"\Symbole: {e['Sym']}\tArgument: {e['Arg']}")
@@ -122,10 +128,12 @@ class DynAnal:
                             break
         return mtch
     
-    def json_eva_match(self, j):
+    def json_eva_match(self, j, log_file):
         for e in self.orderedEvents:
             if e['Type'] in j["Eva"]["Type"]:
                 if e['Cat'] in j["Eva"]["Cat"]:
+                    log = j["Id"] + ',' + j["Name"] + ',' + ','.join(map(str, e.values())) + '\n'
+                    log_file.write(log)
                     return True
         return False
 

@@ -103,26 +103,26 @@ def create_report(results, name):
     display_report_dataframe(file_path)
 
 # Function to apply a rule to the results
-def apply_rule(dynanal, j, r, rule_set):
+def apply_rule(dynanal, j, r, rule_set, log_file):
     rule_set[j["Id"]] = j["Name"]
     if j.get("Registry"):
-        match = dynanal.json_registry_match(j)
+        match = dynanal.json_registry_match(j, log_file)
         if match:
             for cat in j['Tactics']:
                 r[cat].add(j['Id'])
 
     if j.get("Process"):
-        match = dynanal.json_process_match(j)
+        match = dynanal.json_process_match(j, log_file)
         if match:
             for cat in j['Tactics']:
                 r[cat].add(j['Id'])
     if j.get("Filesystem"):
-        match = dynanal.json_file_match(j)
+        match = dynanal.json_file_match(j, log_file)
         if match:
             for cat in j['Tactics']:
                 r[cat].add(j['Id'])
     if j.get("Eva"):
-        match = dynanal.json_eva_match(j)
+        match = dynanal.json_eva_match(j, log_file)
         if match:
             for cat in j['Tactics']:
                 r[cat].add(j['Id'])
@@ -188,6 +188,7 @@ def analyze_malware_samples(pickles_folder):
     rule_set = {}
     for directory in os.listdir(pickles_folder):
         result_dict = init_result_dictionnary()
+        log_file = open(os.path.join(reports_folder, f"{directory}_{scan_time}.log"), 'w', encoding="utf-8")
         print("___Directory", directory, "____")
 
         for filename in os.listdir(os.path.join(pickles_folder, directory)):
@@ -195,9 +196,10 @@ def analyze_malware_samples(pickles_folder):
             trace_file = load_pickle_file(file_path)
 
             for rule in rules:
-                apply_rule(trace_file, rule, result_dict, rule_set)
+                apply_rule(trace_file, rule, result_dict, rule_set, log_file)
         create_report(result_dict, name=directory)
         save_detailed_report(result_dict, rule_set, directory)
+        log_file.close()
         print("\n")
         # print_result_dict(result_dict)
 
