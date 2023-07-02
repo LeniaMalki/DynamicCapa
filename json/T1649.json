@@ -1,0 +1,12 @@
+{
+    "Name": "Steal or Forge Authentication Certificates",
+    "Id": "T1649",
+    "Tactics": ["Credential Access"],
+    "Platforms": ["Azure AD", "Windows", "Linux", "macOS"],
+    "Registry" : {
+        "Type" : ["BEHwA"],
+        "Cat" : ["REGISTRY"],
+        "Sym" : ["NtOpenKeyHook", "NtQueryValueKey"],
+        "Arg" : ["\\\\Microsoft\\\\SystemCertificates"]
+    }
+}
