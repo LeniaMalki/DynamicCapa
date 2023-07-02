@@ -1,5 +1,5 @@
 # Project Description
-The aim of the project is to develop a framework capable of scanning API calls made by malware samples and identifying patterns and behaviors that correspond to malware capabilities. The goal is to analyze the dynamic behavior of the malware at runtime by examining the API calls it makes during its execution. By identifying specific patterns and behaviors, it becomes possible to detect and understand the capabilities and intentions of the malware.
+The aim of the project is to develop a framework capable of dynamically scanning API calls made by malware samples during their execution and identifying patterns and behaviors that correspond to malware capabilities. By identifying specific patterns and behaviors, it becomes possible to detect and understand the capabilities and intentions of the malware. When analyzing the malwares, the behaviour is compared to the rules specified by the *MITRE ATT&CK®* which is a globally-accessible knowledge base of adversary tactics and techniques based on real-world observations.
 
 # Usage
 
@@ -45,7 +45,7 @@ Analyzes all the pickle files contained in the specified folder provinding diffe
 - ERR = Error 
 
 - INF = Information 
-
+    - *I believe that there is some categories here as well*
 # INF type tree
 
 Type: INF (information)
