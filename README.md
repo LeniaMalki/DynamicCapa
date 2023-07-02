@@ -66,7 +66,7 @@ This script analyzes all the pickle files contained in the specified folder prov
 - Evasive: percentage of the different evasion techniques used by all the samples, grouped by category 
 
 ## Types of information
-All the calls within each pickle file is classified by one of the the following types, and one category:
+All the calls within each pickle file is classified by one of the the following types, and one category or title:
 - BEH = Behaviour with Sym (symbol)
     - Cat: 'PROCESS', 'NETWORK', 'MUTEX', 'THREAD'
 - BEHwA = Behaviour with Sym (symbol) and Argument
@@ -76,7 +76,7 @@ All the calls within each pickle file is classified by one of the the following 
 - ERR = Error 
     - No categories
 - INF = Information 
-    - *I believe that there is some categories here as well*
+    - Title: 'JLP MD5', 'PROCESS NAME', 'BASEADDRESS', 'MSVC', 'WRITEONPEHEADEROFFSET', 'VIRTUAL ALLOC EXEC', 'WRITE PROCESS MEMORY', 'CHILDPROCESS CMD', 'CHILDPROCESS PID', 'TIMEOUT', 'EXITCODE', 'PROGRAM INSTRUCTIONS', 'LIBRARY INSTRUCTIONS', 'VIRTUAL PROTECT', 'SUSPECT DLL', 'INJECTION', 'PROCESS ENUMERATION'
 
 
 ## INF type tree
