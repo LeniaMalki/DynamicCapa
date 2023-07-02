@@ -48,6 +48,13 @@ This script requires the file path of the ´PICKLES_FOLDER´ as an argument, and
 ./read_pickles.py PICKLES_FOLDER
 ```
 
+### `main.py`:
+- `create_report(results, name)`
+        - This function creates a summarized CSV report. The `results` arument is a disctionary where each key represents a technique and the corresponding value is a set of IDs associated with that technique. The function iterates over this dictionary and counts the number of IDs. Everything is then saves as a CSV with the columns: Technique,Count and IDs.
+- `display_report_dataframe(file_path)`
+        - This function essentially displays the csv file generated from `create_report(results, name)` as a pandas dataframe. 
+
+
 Analyzes all the pickle files contained in the specified folder provinding different stats about all the samples:
 
 - tot_samples: total number of samples analyzed
