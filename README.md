@@ -36,6 +36,12 @@ It only contains the class **DynAnal** which tracks the dynamic behavior of a sa
 - pidToEvents: dict subset of orderedEvents with the API calls executed by the original sample and its children, grouped by pid
 - pidToHoneypotEvents: dict subset of orderedEvents with the API calls executed by  eventual injected processes/dlls, grouped by pid
 
+It also has several methods where the most important ones are functions that matches the malware with the different rules specified in the `json`-files:
+- `json_registry_match(self, j)`
+    - *Add short explanation for each*
+- `json_process_match(self, j)`
+- `json_file_match(self, j)`
+
 ### `read_pickles.py`:
 
 ```bash
