@@ -7,8 +7,8 @@
         "Type" : ["BEHwA"],
         "Cat" : ["REGISTRY"],
         "Sym" : ["NtOpenKeyHook", "NtQueryValueKey", "NtSetValueKey"],
-        "Arg" : ["\\\\SYSTEM\\\\CurrentControlSet\\\\Services\\\\EventLog",
-                "\\\\SYSTEM\\\\CurrentControlSet\\\\Control\\\\WMI\\\\Autologger\\\\EventLog-Security",
-                "\\\\SYSTEM\\\\CurrentControlSet\\\\Control\\\\WMI\\\\Autologger\\\\EventLog-Application"]
+        "Arg" : ["\\\\CurrentControlSet\\\\Services\\\\EventLog",
+                "\\\\CurrentControlSet\\\\Control\\\\WMI\\\\Autologger\\\\EventLog-Security",
+                "\\\\CurrentControlSet\\\\Control\\\\WMI\\\\Autologger\\\\EventLog-Application"]
     }
 }
