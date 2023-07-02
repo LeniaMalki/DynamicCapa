@@ -3,6 +3,7 @@ import pickle
 import json
 import csv
 import pandas as pd
+import time
 
 
 def print_INF_tree(d):
@@ -81,16 +82,19 @@ def print_process_info(process_info):
 
 
 reports_folder = "reports"
+scan_time = str(int(time.time()))
+
 if not os.path.exists(reports_folder):
     os.makedirs(reports_folder)
 
 
 def create_report(results, name):
-    file_path = os.path.join(reports_folder, f"{name}_summary.csv")
+    file_path = os.path.join(reports_folder, f"{name}_summary_{scan_time}.csv")
     with open(file_path, mode='w', newline='') as file:
         writer = csv.writer(file)
         writer.writerow(["Technique", "Count", "IDs"])
         for technique, techniques_set in results.items():
+            print(techniques_set)
             count = len(techniques_set)
             ids = ', '.join(techniques_set)
             writer.writerow([technique, count, ids])
@@ -105,7 +109,8 @@ def create_report(results, name):
     display_report_dataframe(file_path)
 
 
-def apply_rule(dynanal, j, r):
+def apply_rule(dynanal, j, r, rule_set):
+    rule_set[j["Id"]] = j["Name"]
     if j.get("Registry"):
         match = dynanal.json_registry_match(j)
         if match:
@@ -163,10 +168,24 @@ def display_report_dataframe(file_path):
     df = pd.read_csv(file_path)
     print(df)
 
+def save_detailed_report(r, rule_set, name):
+    with open(os.path.join(reports_folder, f"{name}_report_{scan_time}.txt"), 'w', encoding="utf-8") as rep:
+        rep.write(f"Detailed report for {name}\n\n")
+        for k in r.keys():
+            rep.write("#"*30 + '\n')
+            rep.write(f"Category: {k}\n")
+            rep.write("#"*30 + '\n')
+            d = r[k]
+            for id in d:
+                t_name = rule_set[id]
+                rep.write(f"Technique ID: {id}\n")
+                rep.write(f"Technique Name: {t_name}\n")
+                rep.write("-"*30 + '\n')
+            rep.write('\n')
 
 def analyze_malware_samples(pickles_folder):
     rules = load_json_files()
-
+    rule_set = {}
     for directory in os.listdir(pickles_folder):
         result_dict = init_result_dictionnary()
         print("___Directory", directory, "____")
@@ -176,8 +195,10 @@ def analyze_malware_samples(pickles_folder):
             trace_file = load_pickle_file(file_path)
 
             for rule in rules:
-                apply_rule(trace_file, rule, result_dict)
+                apply_rule(trace_file, rule, result_dict, rule_set)
         create_report(result_dict, name=directory)
+        save_detailed_report(result_dict, rule_set, directory)
+        print("\n")
         # print_result_dict(result_dict)
 
 
