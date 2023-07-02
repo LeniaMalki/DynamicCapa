@@ -1,4 +1,7 @@
-# Project Description
+# Dynamic CAPA
+Project implemented by Fredrik SVEEN, Lenia MALKI and Olivier BREDIN.
+
+## Project Description
 The aim of the project is to develop a framework capable of dynamically scanning API calls made by malware samples during their execution and identifying patterns and behaviors that correspond to malware capabilities. By identifying specific patterns and behaviors, it becomes possible to detect and understand the capabilities and intentions of the malware. When analyzing the malwares, the behaviour is compared to the rules specified by the *MITRE ATT&CK®* which is a globally-accessible knowledge base of adversary tactics and techniques based on real-world observations. All the different techniques specified in *MITRE ATT&CK®* can be found [here](https://attack.mitre.org/techniques/enterprise/). All the different techniques are categorized in 14 different tactics (i.e. groups of techniques):
 - Reconnaissance
 - Resource Development
@@ -17,14 +20,14 @@ The aim of the project is to develop a framework capable of dynamically scanning
 
 During the dynamic analysis, each malware sample will be matched against all implemented rules in the `\json` folder. In this folder, each specific rule have a `json`-file named after the ID of the specific rule.
 
-# Usage
+## Usage
 
-## Scripts
+### Scripts:
 
-- classes.py: contains the class used for loading the pickle file(s)
-- read_pickle.py: command line script for computing stats about several pickle files
+- `classes.py`: contains the class used for loading the pickle file(s)
+- `read_pickle.py`: command line script for computing stats about several pickle files
 
-### classes.py
+### `classes.py`:
 
 It only contains the class **DynAnal** which tracks the dynamic behavior of a sample:
 - sha256: sha256 checksum of the file
@@ -33,7 +36,7 @@ It only contains the class **DynAnal** which tracks the dynamic behavior of a sa
 - pidToEvents: dict subset of orderedEvents with the API calls executed by the original sample and its children, grouped by pid
 - pidToHoneypotEvents: dict subset of orderedEvents with the API calls executed by  eventual injected processes/dlls, grouped by pid
 
-### read_pickles.py
+### `read_pickles.py`:
 
 ```bash
 ./read_pickles.py PICKLES_FOLDER
@@ -50,7 +53,7 @@ Analyzes all the pickle files contained in the specified folder provinding diffe
 - n_of_processes: min, max, median, mean, stdev of number of processes executed by all the samples
 - Evasive: percentage of the different evasion techniques used by all the samples, grouped by category 
 
-# Type of information
+## Type of information
 
 - BEH = Behaviour with Sym (symbol)
     - Cat: 'PROCESS', 'NETWORK', 'MUTEX', 'THREAD'
@@ -62,7 +65,7 @@ Analyzes all the pickle files contained in the specified folder provinding diffe
 
 - INF = Information 
     - *I believe that there is some categories here as well*
-# INF type tree
+## INF type tree
 
 Type: INF (information)
 Key list: ['Time', 'Type', 'Title', 'Desc']
@@ -103,7 +106,7 @@ Key list: ['Time', 'Type', 'Title', 'Desc']
 - PROCESS ENUMERATION
         - Potential detection of pin.exe through Process32Next
 
-# BEH type tree
+## BEH type tree
 
 Type: BEH (Behaviour)
 Key list: ['Time', 'Type', 'Cat', 'Sym']
@@ -145,7 +148,7 @@ Key list: ['Time', 'Type', 'Cat', 'Sym']
         - HttpSendRequestA
         - InternetWriteFile
 
-# BEHwA type tree
+## BEHwA type tree
 
 Type: BEHwA (Behaviour)
 Key list: ['Time', 'Type', 'Cat', 'Sym', 'Arg']
@@ -197,19 +200,19 @@ Key list: ['Time', 'Type', 'Cat', 'Sym', 'Arg']
         - StartServiceA (HANDLE=0x006810d0)
         - DeleteService (HANDLE=0x02aa3601)
 
-# Remaining tasks
+## Remaining tasks
 
 [ ] README file         Olivier
 
 [ ] Log file for detailed info about matches (<malware>_<timestamp>.log)        Léa
-        - Add the log file
-        - check which info to put in the logs
+  - Add the log file
+  - check which info to put in the logs
 
 [ ] Add verbose or do another bigger report with more info (ex. Name of the rule)       Olivier
-        - Optional: format it as a matrix
+  - Optional: format it as a matrix
 s
 [ ] Implement other register rules      Fredrik
-        - Maybe do a dump of all registry events
-        - try to focus on categories we have no rule in (https://attack.mitre.org/datasources/DS0024/)
+  - Maybe do a dump of all registry events
+  - try to focus on categories we have no rule in (https://attack.mitre.org/datasources/DS0024/)
 
 [ ] Check if there are other rules that can be implemented in the FILESYSTEM category
