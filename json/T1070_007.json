@@ -1,0 +1,13 @@
+{
+    "Name": "Indicator Removal: Clear Network Connection History and Configurations",
+    "Id": "T1070.007",
+    "Tactics": ["Defense Evasion"],
+    "Platforms": ["Linux", "Network", "Windows", "macOS"],
+    "Registry" : {
+        "Type" : ["BEHwA"],
+        "Cat" : ["REGISTRY"],
+        "Sym" : ["NtSetValueKey", "NtDeleteKey"],
+        "Arg" : ["\\\\Microsoft\\\\Terminal Server Client\\\\Default",
+                "\\\\Microsoft\\\\Terminal Server Client\\\\Servers"]
+    }
+}

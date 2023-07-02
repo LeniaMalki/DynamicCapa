@@ -1,0 +1,13 @@
+{
+    "Name": "Impair Defenses: Indicator Blocking",
+    "Id": "T1562.006",
+    "Tactics": ["Defense Evasion"],
+    "Platforms": ["Linux", "Windows", "macOS"],
+    "Registry" : {
+        "Type" : ["BEHwA"],
+        "Cat" : ["REGISTRY"],
+        "Sym" : ["NtSetValueKey"],
+        "Arg" : ["\\\\CurrentControlSet\\\\Services\\\\EventLog\\\\Security",
+                "\\\\CurrentControlSet\\\\Control\\\\WMI\\\\Autologger\\\\"]
+    }
+}

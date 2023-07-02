@@ -1,0 +1,12 @@
+{
+    "Name": "Inhibit System Recovery",
+    "Id": "T1490",
+    "Tactics": ["Impact"],
+    "Platforms": ["IaaS", "Linux", "Network", "Windows", "macOS"],
+    "Registry" : {
+        "Type" : ["BEHwA"],
+        "Cat" : ["REGISTRY"],
+        "Sym" : ["NtSetValueKey", "NtCreateKey"],
+        "Arg" : ["\\\\Microsoft\\\\PreviousVersions\\\\DisableLocalPage"]
+    }
+}

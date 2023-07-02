@@ -1,0 +1,12 @@
+{
+    "Name": "Hijack Execution Flow: Path Interception by PATH Environment Variable",
+    "Id": "T1574.007",
+    "Tactics": ["Persistence", "Privilege Escalation", "Defense Evasion"],
+    "Platforms": ["Windows"],
+    "Registry" : {
+        "Type" : ["BEHwA"],
+        "Cat" : ["REGISTRY"],
+        "Sym" : ["NtSetValueKey"],
+        "Arg" : ["\\\\CurrentControlSet\\\\Control\\\\Session Manager\\\\Environment\\\\Path"]
+    }
+}
