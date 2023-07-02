@@ -86,8 +86,8 @@ class DynAnal:
                         m = re.search(arg, e['Arg'])
                         if m != None:
                             #print(e)
-                            print(f"Match rule {j['Id']} ({j['Name']})")
-                            print(f"\tSymbole: {e['Sym']}\tArgument: {e['Arg']}")
+                            #print(f"Match rule {j['Id']} ({j['Name']})")
+                            #print(f"\tSymbole: {e['Sym']}\tArgument: {e['Arg']}")
                             mtch = True
                             break
         return mtch
