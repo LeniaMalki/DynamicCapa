@@ -96,7 +96,6 @@ def create_report(results, name):
         writer = csv.writer(file)
         writer.writerow(["Technique", "Count", "IDs"])
         for technique, techniques_set in results.items():
-            print(techniques_set)
             count = len(techniques_set)
             ids = ', '.join(techniques_set)
             writer.writerow([technique, count, ids])
