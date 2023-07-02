@@ -121,6 +121,13 @@ class DynAnal:
                             mtch = True
                             break
         return mtch
+    
+    def json_eva_match(self, j):
+        for e in self.orderedEvents:
+            if e['Type'] in j["Eva"]["Type"]:
+                if e['Cat'] in j["Eva"]["Cat"]:
+                    return True
+        return False
 
     def get_evasive_behaviour(self) -> Dict:
         if self.evasiveBehaviour is not None:

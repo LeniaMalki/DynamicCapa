@@ -1,0 +1,10 @@
+{
+    "Name": "Debugger Evasion",
+    "Id": "T1622",
+    "Tactics": ["Defense Evasion", "Discovery"],
+    "Platforms": ["Windows"],
+    "Eva" : {
+        "Type" : ["EVA"],
+        "Cat" : ["ANTIDEBUG"]
+    }
+}

@@ -1,0 +1,10 @@
+{
+    "Name": "Virtualization/Sandbox Evasion: User Activity Based Checks",
+    "Id": "T1497.002",
+    "Tactics": ["Defense Evasion", "Discovery"],
+    "Platforms": ["Windows"],
+    "Eva" : {
+        "Type" : ["EVA"],
+        "Cat" : ["ENVIRONMENT PROFILING"]
+    }
+}

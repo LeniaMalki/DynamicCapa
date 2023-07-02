@@ -128,6 +128,11 @@ def apply_rule(dynanal, j, r, rule_set):
         if match:
             for cat in j['Tactics']:
                 r[cat].add(j['Id'])
+    if j.get("Eva"):
+        match = dynanal.json_eva_match(j)
+        if match:
+            for cat in j['Tactics']:
+                r[cat].add(j['Id'])
 
 
 def init_result_dictionnary():

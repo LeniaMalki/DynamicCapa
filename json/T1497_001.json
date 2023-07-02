@@ -1,0 +1,10 @@
+{
+    "Name": "Virtualization/Sandbox Evasion: System Checks",
+    "Id": "T1497.001",
+    "Tactics": ["Defense Evasion", "Discovery"],
+    "Platforms": ["Windows"],
+    "Eva" : {
+        "Type" : ["EVA"],
+        "Cat" : ["GENERIC SANDBOX CHECK"]
+    }
+}

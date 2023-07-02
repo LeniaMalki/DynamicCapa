@@ -1,0 +1,10 @@
+{
+    "Name": "Virtualization/Sandbox Evasion: Time Based Evasion",
+    "Id": "T1497.003",
+    "Tactics": ["Defense Evasion", "Discovery"],
+    "Platforms": ["Windows"],
+    "Eva" : {
+        "Type" : ["EVA"],
+        "Cat" : ["TIMING ATTACK"]
+    }
+}

@@ -1,0 +1,10 @@
+{
+    "Name": "Obfuscated Files or Information",
+    "Id": "T1027",
+    "Tactics": ["Defense Evasion", "Discovery"],
+    "Platforms": ["Windows"],
+    "Eva" : {
+        "Type" : ["EVA"],
+        "Cat" : ["ANTIDUMP"]
+    }
+}
