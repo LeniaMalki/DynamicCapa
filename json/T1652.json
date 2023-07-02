@@ -2,7 +2,7 @@
     "Name": "Device Driver Discovery",
     "Id": "T1652",
     "Tactics": ["Discovery"],
-    "Platforms": ["Windows"],
+    "Platforms": ["Windows", "Linux", "macOS"],
     "Registry" : {
         "Type" : ["BEHwA"],
         "Cat" : ["REGISTRY"],
