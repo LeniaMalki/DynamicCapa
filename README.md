@@ -18,11 +18,14 @@ The aim of the project is to develop a framework capable of dynamically scanning
 - Exfiltration
 - Impact
 
-During the dynamic analysis, each malware sample will be matched against all implemented rules in the `\json` folder. In this folder, each specific rule have a `json`-file named after the ID of the specific rule.
+During the dynamic analysis, each malware sample will be matched against all implemented rules in the `\json` folder. In this folder, each specific rule have a `json`-file named after the ID of the specific rule. It makes this tool very easy to expand because it just requires to translate the rule in `json` format, and put it in the `\json` folder. We implemented 51 rules at the moment, but the MITRE website contains way more rule that could be implemented. 
+
+All implemented rules correspond to a specific MITRE rule, so if any additional information is needed, the ID can be used to get all necessary details on the technique. 
 
 
 ## Output Files
-- .log files: For each argument in a rule's registry arguments, it uses regular expression matching to find a match in the event argument. If a match is found, it writes a log entry to the log file, combining the rule's ID, name, and event values. These files essentially contain a dump of numerous events which has been linked to a rule.
+
+- .log files: Contains all the events that matched a rule. If a match is found, it writes a log entry to the log file, combining the rule's ID, name, and event values. These files essentially contain a dump of numerous events which has been linked to a rule.
 - .csv files: These contain a summarized information about the number of detections made for each class of technique. Information included is the technique type, number of occurances and their respective IDs.
 - .txt files: These files consists of a longer reports as opposed to the .csv files. They contain the name of the detected techniques as well as the respecive IDs and categories for each malware.  
         
@@ -44,13 +47,17 @@ It only contains the class **DynAnal** which tracks the dynamic behavior of a sa
 - pidToHoneypotEvents: dict subset of orderedEvents with the API calls executed by  eventual injected processes/dlls, grouped by pid
 
 It also has several methods where the most important ones are functions that matches the malware with the different rules specified in the `json`-files:
-- `json_registry_match(self, j)`
-    - *Add short explanation for each*
-- `json_process_match(self, j)`
-- `json_file_match(self, j)`
+- `json_registry_match(self, j, log_file)`
+    - Used to match registry related rules. Take as an input the json rule that has a `Registry` key, and tries to match all events of the `Dynanal` class to the rule.
+- `json_process_match(self, j, log_file)`
+        - Used to match process related rules. Take as an input the json rule that has a `Process` key, and tries to match all events of the `Dynanal` class to the rule.
+- `json_file_match(self, j, log_file`
+        - Used to match filesystem related rules. Take as an input the json rule that has a `Filesystem` key, and tries to match all events of the `Dynanal` class to the rule.
+- `json_eva_match(self, j, log_file)`
+        - Used to match evasion related rules. Take as an input the json rule that has a `EVA` key, and tries to match all events of the `Dynanal` class to the rule.
 
 ### `read_pickles.py`:
-This script requires the file path of the the forlder of the pickles files as an argument, and can be called in the terminal like this:
+This script requires the file path of the the folder of the pickles files as an argument, and can be called in the terminal like this:
 ```bash
 ./read_pickles.py PICKLES_FOLDER
 ```
@@ -60,6 +67,16 @@ This script requires the file path of the the forlder of the pickles files as an
         - This function creates a summarized CSV report. The `results` arument is a disctionary where each key represents a technique and the corresponding value is a set of IDs associated with that technique. The function iterates over this dictionary and counts the number of IDs. Everything is then saves as a CSV with the columns: Technique,Count and IDs.
 - `display_report_dataframe(file_path)`
         - This function essentially displays the csv file generated from `create_report(results, name)` as a pandas dataframe. 
+- `apply_rule(dynanal, j, r, rule_set, log_file)`
+        - This functions takes a json rule and apply all possible matching function on it. One json file can have multiple keys with information for different type of matching (registry, process, EVA, filesystem)
+- `load_json_files()`
+        - Load all json files in the `\json` folder
+- `save_detailed_report(r, rule_set, name)`
+        - Save the .txt report file using the result dictionary
+- `init_result_dictionnary()`
+        - Returns an empty result dictionnaty with a set for each tactic.
+- `analyze_malware_samples(pickles_folder)`
+        - Main function that does the analysis on a given `pickles_folder`
 
 This script analyzes all the pickle files contained in the specified folder provinding different stats about all the samples:
 
