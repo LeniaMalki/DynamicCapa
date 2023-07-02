@@ -1,5 +1,21 @@
 # Project Description
-The aim of the project is to develop a framework capable of dynamically scanning API calls made by malware samples during their execution and identifying patterns and behaviors that correspond to malware capabilities. By identifying specific patterns and behaviors, it becomes possible to detect and understand the capabilities and intentions of the malware. When analyzing the malwares, the behaviour is compared to the rules specified by the *MITRE ATT&CK®* which is a globally-accessible knowledge base of adversary tactics and techniques based on real-world observations.
+The aim of the project is to develop a framework capable of dynamically scanning API calls made by malware samples during their execution and identifying patterns and behaviors that correspond to malware capabilities. By identifying specific patterns and behaviors, it becomes possible to detect and understand the capabilities and intentions of the malware. When analyzing the malwares, the behaviour is compared to the rules specified by the *MITRE ATT&CK®* which is a globally-accessible knowledge base of adversary tactics and techniques based on real-world observations. All the different techniques specified in *MITRE ATT&CK®* can be found [here](https://attack.mitre.org/techniques/enterprise/). All the different techniques are categorized in 14 different tactics (i.e. groups of techniques):
+- Reconnaissance
+- Resource Development
+- Initial Access
+- Execution
+- Persistence
+- Privilege Escalation
+- Defense Evasion
+- Credential Access
+- Discovery
+- Lateral Movement
+- Collection
+- Command and Control
+- Exfiltration
+- Impact
+
+During the dynamic analysis, each malware sample will be matched against all implemented rules in the `\json` folder. In this folder, each specific rule have a `json`-file named after the ID of the specific rule.
 
 # Usage
 
