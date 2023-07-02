@@ -1,0 +1,12 @@
+{
+    "Name": "Modify Authentication Process: Password Filter DLL",
+    "Id": "T1556.002",
+    "Tactics": ["Credential Access", "Defense Evasion", "Persistence"],
+    "Platforms": ["Windows"],
+    "Registry" : {
+        "Type" : ["BEHwA"],
+        "Cat" : ["REGISTRY"],
+        "Sym" : ["NtSetValueKey", "NtCreateKey"],
+        "Arg" : ["\\\\CurrentControlSet\\\\Control\\\\Lsa\\\\Notification Packages"]
+    }
+}

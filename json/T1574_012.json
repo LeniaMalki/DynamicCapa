@@ -1,0 +1,14 @@
+{
+    "Name": "Hijack Execution Flow: COR_PROFILER",
+    "Id": "T1574.012",
+    "Tactics": ["Persistence", "Privilege Escalation", "Defense Evasion"],
+    "Platforms": ["Windows"],
+    "Registry" : {
+        "Type" : ["BEHwA"],
+        "Cat" : ["REGISTRY"],
+        "Sym" : ["NtSetValueKey"],
+        "Arg" : ["\\\\CurrentControlSet\\\\Control\\\\Session Manager\\\\Environment\\\\cor_enable_profiling",
+                "\\\\CurrentControlSet\\\\Control\\\\Session Manager\\\\Environment\\\\cor_profiler",
+                "\\\\CurrentControlSet\\\\Control\\\\Session Manager\\\\Environment\\\\cor_profiler_path"]
+    }
+}

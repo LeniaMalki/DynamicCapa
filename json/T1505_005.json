@@ -1,0 +1,12 @@
+{
+    "Name": "Server Software Component: Terminal Services DLL",
+    "Id": "T1505.005",
+    "Tactics": ["Persistence"],
+    "Platforms": ["Windows"],
+    "Registry" : {
+        "Type" : ["BEHwA"],
+        "Cat" : ["REGISTRY"],
+        "Sym" : ["NtSetValueKey"],
+        "Arg" : ["\\\\CurrentControlSet\\\\services\\\\TermService\\\\Parameters\\\\"]
+    }
+}

@@ -1,0 +1,12 @@
+{
+    "Name": "Impair Defenses: Disable or Modify System Firewall",
+    "Id": "T1562.004",
+    "Tactics": ["Defense Evasion"],
+    "Platforms": ["Linux", "Windows", "macOS"],
+    "Registry" : {
+        "Type" : ["BEHwA"],
+        "Cat" : ["REGISTRY"],
+        "Sym" : ["NtSetValueKey"],
+        "Arg" : ["\\\\CurrentControlSet\\\\Services\\\\SharedAccess\\\\Parameters\\\\FirewallPolicy"]
+    }
+}

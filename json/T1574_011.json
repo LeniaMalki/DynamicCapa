@@ -1,0 +1,12 @@
+{
+    "Name": "Hijack Execution Flow: Services Registry Permissions Weakness",
+    "Id": "T1574.011",
+    "Tactics": ["Persistence", "Privilege Escalation", "Defense Evasion"],
+    "Platforms": ["Windows"],
+    "Registry" : {
+        "Type" : ["BEHwA"],
+        "Cat" : ["REGISTRY"],
+        "Sym" : ["NtSetValueKey"],
+        "Arg" : ["\\\\CurrentControlSet\\\\Services"]
+    }
+}

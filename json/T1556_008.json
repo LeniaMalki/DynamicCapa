@@ -1,0 +1,12 @@
+{
+    "Name": "Modify Authentication Process: Network Provider DLL",
+    "Id": "T1556.008",
+    "Tactics": ["Credential Access", "Defense Evasion", "Persistence"],
+    "Platforms": ["Windows"],
+    "Registry" : {
+        "Type" : ["BEHwA"],
+        "Cat" : ["REGISTRY"],
+        "Sym" : ["NtSetValueKey", "NtCreateKey"],
+        "Arg" : ["\\\\CurrentControlSet\\\\Control\\\\NetworkProvider\\\\Order"]
+    }
+}
