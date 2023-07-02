@@ -159,8 +159,8 @@ Key list: ['Time', 'Type', 'Cat', 'Sym']
 
 Type: BEHwA (Behaviour)
 Key list: ['Time', 'Type', 'Cat', 'Sym', 'Arg']
-- <Cat>
-    - <Sym> (<Arg>)
+- Cat
+    - Sym (Arg)
 - REGISTRY
     - NtOpenKeyHook (None)
     - NtQueryValueKey (\REGISTRY\MACHINE\SOFTWARE\Policies\Microsoft\Windows\safer\codeidentifiers)
