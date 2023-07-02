@@ -43,12 +43,12 @@ It also has several methods where the most important ones are functions that mat
 - `json_file_match(self, j)`
 
 ### `read_pickles.py`:
-This script requires the file path of the ´PICKLES_FOLDER´ as an argument, and can be called in the terminal like this
+This script requires the file path of the the forlder of the pickles files as an argument, and can be called in the terminal like this:
 ```bash
 ./read_pickles.py PICKLES_FOLDER
 ```
 
-Analyzes all the pickle files contained in the specified folder provinding different stats about all the samples:
+This script analyzes all the pickle files contained in the specified folder provinding different stats about all the samples:
 
 - tot_samples: total number of samples analyzed
 - broken_pickle: number of pickle files that could not be loaded
@@ -60,21 +60,20 @@ Analyzes all the pickle files contained in the specified folder provinding diffe
 - Evasive: percentage of the different evasion techniques used by all the samples, grouped by category 
 
 ## Types of information
-
+All the calls within each pickle file is classified by one of the the following types, and one category:
 - BEH = Behaviour with Sym (symbol)
     - Cat: 'PROCESS', 'NETWORK', 'MUTEX', 'THREAD'
 - BEHwA = Behaviour with Sym (symbol) and Argument
     - Cat: 'REGISTRY', 'FILESYSTEM', 'PROCESS', 'MUTEX', 'SERVICE', 'NETWORK'
 - EVA = Evasive 
-    - 'ANTIDUMP', 'ENVIRONMENT PROFILING', 'ANTIDEBUG', 'GENERIC SANDBOX CHECK', 'TIMING ATTACK'
+    - Cat: 'ANTIDUMP', 'ENVIRONMENT PROFILING', 'ANTIDEBUG', 'GENERIC SANDBOX CHECK', 'TIMING ATTACK'
 - ERR = Error 
-
+    - No categories
 - INF = Information 
     - *I believe that there is some categories here as well*
 
 
 ## INF type tree
-
 Type: INF (information)
 Key list: ['Time', 'Type', 'Title', 'Desc']
 - (Title)
@@ -119,94 +118,94 @@ Key list: ['Time', 'Type', 'Title', 'Desc']
 Type: BEH (Behaviour)
 Key list: ['Time', 'Type', 'Cat', 'Sym']
 - (Cat)
-        - (Sym)
+    - (Sym)
 - PROCESS
-        - NtProtectVirtualMemory
-        - NtOpenSection
-        - NtCreateSection
-        - ZwMapViewOfSection
-        - NtAllocateVirtualMemory
-        - ZwFreeVirtualMemory
-        - NtUnmapViewOfSection
-        - NtOpenProcess
-        - ZwTerminateProcess
-        - ZwAllocateVirtualMemory
-        - NtCreateUserProcess
-        - ZwWriteVirtualMemory
-        - NtReadVirtualMemory
-        - ChildProcess
-        - ZwOpenProcess
-        - NtTerminateProcess
+    - NtProtectVirtualMemory
+    - NtOpenSection
+    - NtCreateSection
+    - ZwMapViewOfSection
+    - NtAllocateVirtualMemory
+    - ZwFreeVirtualMemory
+    - NtUnmapViewOfSection
+    - NtOpenProcess
+    - ZwTerminateProcess
+    - ZwAllocateVirtualMemory
+    - NtCreateUserProcess
+    - ZwWriteVirtualMemory
+    - NtReadVirtualMemory
+    - ChildProcess
+    - ZwOpenProcess
+    - NtTerminateProcess
 - MUTEX
-        - NtCreateMutant
+    - NtCreateMutant
 - THREAD
-        - NtCreateThreadEx
-        - ZwResumeThread
-        - ZwCreateThreadEx
-        - NtGetContextThread
-        - ZwSetContextThread
-        - ZwTerminateThread
-        - ZwOpenThread
-        - NtOpenThread
-        - NtQueueApcThread
-        - NtResumeThread
-        - NtSuspendThread
+    - NtCreateThreadEx
+    - ZwResumeThread
+    - ZwCreateThreadEx
+    - NtGetContextThread
+    - ZwSetContextThread
+    - ZwTerminateThread
+    - ZwOpenThread
+    - NtOpenThread
+    - NtQueueApcThread
+    - NtResumeThread
+    - NtSuspendThread
 - NETWORK
-        - HttpSendRequestW
-        - HttpSendRequestA
-        - InternetWriteFile
+    - HttpSendRequestW
+    - HttpSendRequestA
+    - InternetWriteFile
 
 ## BEHwA type tree
 
 Type: BEHwA (Behaviour)
 Key list: ['Time', 'Type', 'Cat', 'Sym', 'Arg']
 - <Cat>
-        - <Sym> (<Arg>)
+    - <Sym> (<Arg>)
 - REGISTRY
-        - NtOpenKeyHook (None)
-        - NtQueryValueKey (\REGISTRY\MACHINE\SOFTWARE\Policies\Microsoft\Windows\safer\codeidentifiers)
-        - NtCreateKey (\REGISTRY\USER\S-1-5-21-1715841133-416286900-2289519084-1000\Software\Microsoft\Windows\CurrentVersion\Explorer\RunMRU)      
-        - NtSetValueKey (\REGISTRY\USER\S-1-5-21-1715841133-416286900-2289519084-1000\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer)  
-        - NtDeleteKey (\REGISTRY\USER\S-1-5-21-1715841133-416286900-2289519084-1000\Software\Microsoft\Windows\CurrentVersion\Internet Settings\ZoneMap)
+    - NtOpenKeyHook (None)
+    - NtQueryValueKey (\REGISTRY\MACHINE\SOFTWARE\Policies\Microsoft\Windows\safer\codeidentifiers)
+    - NtCreateKey (\REGISTRY\USER\S-1-5-21-1715841133-416286900-2289519084-1000\Software\Microsoft\Windows\CurrentVersion\Explorer\RunMRU)      
+    - NtSetValueKey (\REGISTRY\USER\S-1-5-21-1715841133-416286900-2289519084-1000\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer)  
+    - NtDeleteKey (\REGISTRY\USER\S-1-5-21-1715841133-416286900-2289519084-1000\Software\Microsoft\Windows\CurrentVersion\Internet Settings\ZoneMap)
 - FILESYSTEM
-        - NtQueryAttributesFile (\??\C:\Users\GuannaPenna\WSOCK32.dll)
-        - NtOpenFile (\Device\HarddiskVolume2\Windows\System32\wsock32.dll)
-        - NtQueryInformationFile (\Device\HarddiskVolume2\Windows\WindowsShell.Manifest)
-        - NtReadFile (\Device\NamedPipe\W32PosixPipe.00000f1c.00000007)
-        - NtDeviceIoControlFile (\Device\KsecDD)
-        - CreateFileW (C:\Users\GuannaPenna\9V3CFUKU.exe)
-        - NtCreateFile (\Device\HarddiskVolume2\Users\GuannAPenna\9V3CFUKU.exe)
-        - NtSetInformationFile (\Device\HarddiskVolume2\Windows\Microsoft.NET\Framework\v2.0.50727\RegAsm.exe)
-        - CreateFileA (\\.\SICE)
-        - NtWriteFile (\Device\HarddiskVolume2\Users\GuannAPenna\AppData\Local\Temp\logrdeventsmaxo4.cfg)
-        - DeleteFileA (C:\Users\GuannaPenna\sxeA1CD.tmp)
-        - DeleteFileW (C:\Users\GuannaPenna\sxeA1CD.tmp)
+    - NtQueryAttributesFile (\??\C:\Users\GuannaPenna\WSOCK32.dll)
+    - NtOpenFile (\Device\HarddiskVolume2\Windows\System32\wsock32.dll)
+    - NtQueryInformationFile (\Device\HarddiskVolume2\Windows\WindowsShell.Manifest)
+    - NtReadFile (\Device\NamedPipe\W32PosixPipe.00000f1c.00000007)
+    - NtDeviceIoControlFile (\Device\KsecDD)
+    - CreateFileW (C:\Users\GuannaPenna\9V3CFUKU.exe)
+    - NtCreateFile (\Device\HarddiskVolume2\Users\GuannAPenna\9V3CFUKU.exe)
+    - NtSetInformationFile (\Device\HarddiskVolume2\Windows\Microsoft.NET\Framework\v2.0.50727\RegAsm.exe)
+    - CreateFileA (\\.\SICE)
+    - NtWriteFile (\Device\HarddiskVolume2\Users\GuannAPenna\AppData\Local\Temp\logrdeventsmaxo4.cfg)
+    - DeleteFileA (C:\Users\GuannaPenna\sxeA1CD.tmp)
+    - DeleteFileW (C:\Users\GuannaPenna\sxeA1CD.tmp)
 - MUTEX
-        - NtCreateMutant (runas)
-        - NtOpenMutant (Local\!IETld!Mutex)
+    - NtCreateMutant (runas)
+    - NtOpenMutant (Local\!IETld!Mutex)
 - PROCESS
-        - NtOpenProcess (C:\pin\source\tools\JuanLesPIN\Release\Honeypot.exe)
-        - ZwOpenProcess (C:\Users\Slasti\X8JWK4G1.exe)
-        - NtCreateUserProcess (C:\Windows\System32\WerFault.exe)
+    - NtOpenProcess (C:\pin\source\tools\JuanLesPIN\Release\Honeypot.exe)
+    - ZwOpenProcess (C:\Users\Slasti\X8JWK4G1.exe)
+    - NtCreateUserProcess (C:\Windows\System32\WerFault.exe)
 - NETWORK
-        - inet_addr (localhost)
-        - URLDownloadToFileW (http://aurora.bitnamiapp.com/tratador/sub003473.rar)
+    - inet_addr (localhost)
+    - URLDownloadToFileW (http://aurora.bitnamiapp.com/tratador/sub003473.rar)
         - InternetOpenW (Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 6.1; Trident/4.0; SLCC2; .NET CLR 2.0.50727; .NET CLR 3.5.30729; .NET CLR 3.0.30729; Media Center PC 6.0))
-        - InternetOpenA (Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 6.1; Trident/4.0; SLCC2; .NET CLR 2.0.50727; .NET CLR 3.5.30729; .NET CLR 3.0.30729; Media Center PC 6.0))
-        - connect (127.0.0.1:55723)
-        - InternetConnectW (aurora.bitnamiapp.com)
-        - InternetConnectA (aurora.bitnamiapp.com)
-        - InternetOpenUrlA (https://cdn.discordapp.com/attachments/851129144217829379/851813349745623050/Qtepsknsyefcoyubojldkppprkszlta)
-        - URLDownloadToFileA (http://20.87.46.185/unmy.bmp)
+    - InternetOpenA (Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 6.1; Trident/4.0; SLCC2; .NET CLR 2.0.50727; .NET CLR 3.5.30729; .NET CLR 3.0.30729; Media Center PC 6.0))
+    - connect (127.0.0.1:55723)
+    - InternetConnectW (aurora.bitnamiapp.com)
+    - InternetConnectA (aurora.bitnamiapp.com)
+    - InternetOpenUrlA (https://cdn.discordapp.com/attachments/851129144217829379/851813349745623050/Qtepsknsyefcoyubojldkppprkszlta)
+    - URLDownloadToFileA (http://20.87.46.185/unmy.bmp)
 - SERVICE
-        - OpenSCManagerA (HANDLE=0x00000000)
-        - OpenServiceA (rasman)
-        - OpenSCManagerW (HANDLE=0x00000000)
-        - OpenServiceW (NAME=AudioSrvHANDLE=0x002a0ef8)
-        - ControlService (HANDLE=0x001aedd8)
-        - CreateServiceA (dahiService)
-        - StartServiceA (HANDLE=0x006810d0)
-        - DeleteService (HANDLE=0x02aa3601)
+    - OpenSCManagerA (HANDLE=0x00000000)
+    - OpenServiceA (rasman)
+    - OpenSCManagerW (HANDLE=0x00000000)
+    - OpenServiceW (NAME=AudioSrvHANDLE=0x002a0ef8)
+    - ControlService (HANDLE=0x001aedd8)
+    - CreateServiceA (dahiService)
+    - StartServiceA (HANDLE=0x006810d0)
+    - DeleteService (HANDLE=0x02aa3601)
 
 ## Remaining tasks
 
