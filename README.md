@@ -20,6 +20,13 @@ The aim of the project is to develop a framework capable of dynamically scanning
 
 During the dynamic analysis, each malware sample will be matched against all implemented rules in the `\json` folder. In this folder, each specific rule have a `json`-file named after the ID of the specific rule.
 
+
+## Output Files
+- .log files: For each argument in a rule's registry arguments, it uses regular expression matching to find a match in the event argument. If a match is found, it writes a log entry to the log file, combining the rule's ID, name, and event values. These files essentially contain a dump of numerous events which has been linked to a rule.
+- .csv files: These contain a summarized information about the number of detections made for each class of technique. Information included is the technique type, number of occurances and their respective IDs.
+- .txt files: These files consists of a longer reports as opposed to the .csv files. They contain the name of the detected techniques as well as the respecive IDs and categories for each malware.  
+        
+
 ## Usage
 
 ### Scripts:

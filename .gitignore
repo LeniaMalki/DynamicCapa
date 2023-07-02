@@ -3,3 +3,13 @@
 *.txtl
 /output
 /.vs/DynamicCapa/FileContentIndex
+*.log
+*.txt
+reports/aitinject_summary_1688323534.csv
+reports/bestafera_summary_1688323534.csv
+reports/bingoml_summary_1688323534.csv
+reports/buzy_summary_1688323534.csv
+reports/darkkomet_summary_1688323534.csv
+reports/ekstak_summary_1688323534.csv
+reports/jacard_summary_1688323534.csv
+reports/wabot_summary_1688323534.csv
