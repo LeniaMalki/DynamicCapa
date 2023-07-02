@@ -217,9 +217,5 @@ Key list: ['Time', 'Type', 'Cat', 'Sym', 'Arg']
 
 [ ] Add verbose or do another bigger report with more info (ex. Name of the rule)       Olivier
   - Optional: format it as a matrix
-s
-[ ] Implement other register rules      Fredrik
-  - Maybe do a dump of all registry events
-  - try to focus on categories we have no rule in (https://attack.mitre.org/datasources/DS0024/)
 
 [ ] Check if there are other rules that can be implemented in the FILESYSTEM category
