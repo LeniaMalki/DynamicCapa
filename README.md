@@ -20,7 +20,9 @@ The aim of the project is to develop a framework capable of dynamically scanning
 
 During the dynamic analysis, each malware sample will be matched against all implemented rules in the `\json` folder. In this folder, each specific rule have a `json`-file named after the ID of the specific rule. It makes this tool very easy to expand because it just requires to translate the rule in `json` format, and put it in the `\json` folder. We implemented 51 rules at the moment, but the MITRE website contains way more rule that could be implemented. 
 
-All implemented rules correspond to a specific MITRE rule, so if any additional information is needed, the ID can be used to get all necessary details on the technique. 
+The json rule files contain general information about the rules, and then keys related either to registry, process, filesystem or evasion. These keys contains a dictionnary of all characteristics needed to match the rule (type, category, symbole, title, regex to apply to the argument, etc...)
+
+All implemented rules correspond to a specific MITRE rule, so if any additional information is needed, the ID can be used to get all necessary details on the technique on the MITRE website. 
 
 
 ## Output Files
@@ -28,6 +30,8 @@ All implemented rules correspond to a specific MITRE rule, so if any additional 
 - .log files: Contains all the events that matched a rule. If a match is found, it writes a log entry to the log file, combining the rule's ID, name, and event values. These files essentially contain a dump of numerous events which has been linked to a rule.
 - .csv files: These contain a summarized information about the number of detections made for each class of technique. Information included is the technique type, number of occurances and their respective IDs.
 - .txt files: These files consists of a longer reports as opposed to the .csv files. They contain the name of the detected techniques as well as the respecive IDs and categories for each malware.  
+
+All of these files will be saved in the `reports` folder after execution. The filename is built with the name of the directory containing the traces (name of the malware) and the timestamp of the beginning of the scan. 
         
 
 ## Usage
@@ -48,11 +52,11 @@ It only contains the class **DynAnal** which tracks the dynamic behavior of a sa
 
 It also has several methods where the most important ones are functions that matches the malware with the different rules specified in the `json`-files:
 - `json_registry_match(self, j, log_file)`
-    - Used to match registry related rules. Take as an input the json rule that has a `Registry` key, and tries to match all events of the `Dynanal` class to the rule.
+    - Used to match registry related rules. Take as an input the json rule that has a `Registry` key, and tries to match all events of the `Dynanal` class to the rule. It is using REGEX to parse the argument with the pattern provided by the rule json file.
 - `json_process_match(self, j, log_file)`
-        - Used to match process related rules. Take as an input the json rule that has a `Process` key, and tries to match all events of the `Dynanal` class to the rule.
+        - Used to match process related rules. Take as an input the json rule that has a `Process` key, and tries to match all events of the `Dynanal` class to the rule. It is using REGEX to parse the argument with the pattern provided by the rule json file.
 - `json_file_match(self, j, log_file`
-        - Used to match filesystem related rules. Take as an input the json rule that has a `Filesystem` key, and tries to match all events of the `Dynanal` class to the rule.
+        - Used to match filesystem related rules. Take as an input the json rule that has a `Filesystem` key, and tries to match all events of the `Dynanal` class to the rule. It is using REGEX to parse the argument with the pattern provided by the rule json file.
 - `json_eva_match(self, j, log_file)`
         - Used to match evasion related rules. Take as an input the json rule that has a `EVA` key, and tries to match all events of the `Dynanal` class to the rule.
 
@@ -70,24 +74,14 @@ This script requires the file path of the the folder of the pickles files as an 
 - `apply_rule(dynanal, j, r, rule_set, log_file)`
         - This functions takes a json rule and apply all possible matching function on it. One json file can have multiple keys with information for different type of matching (registry, process, EVA, filesystem)
 - `load_json_files()`
-        - Load all json files in the `\json` folder
+        - Load all json files in the `\json` folder in a list.
 - `save_detailed_report(r, rule_set, name)`
         - Save the .txt report file using the result dictionary
 - `init_result_dictionnary()`
-        - Returns an empty result dictionnaty with a set for each tactic.
+        - Returns an empty result dictionnary with a set for each tactic.
 - `analyze_malware_samples(pickles_folder)`
         - Main function that does the analysis on a given `pickles_folder`
 
-This script analyzes all the pickle files contained in the specified folder provinding different stats about all the samples:
-
-- tot_samples: total number of samples analyzed
-- broken_pickle: number of pickle files that could not be loaded
-- empty_samples: number of empty pickles
-- evasive_samples: percentage of samples using at least one evasive technique
-- injection_samples: percentage of samples performing injection
-- n_of_events: min, max, median, mean, stdev of the number of events executed by all the samples
-- n_of_processes: min, max, median, mean, stdev of number of processes executed by all the samples
-- Evasive: percentage of the different evasion techniques used by all the samples, grouped by category 
 
 ## Types of information
 All the calls within each pickle file is classified by one of the the following types, and one category or title:
