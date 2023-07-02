@@ -1,0 +1,12 @@
+{
+    "Name": "System Location Discovery: System Language Discovery",
+    "Id": "T1614.001",
+    "Tactics": ["Discovery"],
+    "Platforms": ["Linux", "Windows", "macOS"],
+    "Registry" : {
+        "Type" : ["BEHwA"],
+        "Cat" : ["REGISTRY"],
+        "Sym" : ["NtOpenKeyHook", "NtQueryValueKey"],
+        "Arg" : ["\\\\CurrentControlSet\\\\Control\\\\Nls\\\\Language"]
+    }
+}

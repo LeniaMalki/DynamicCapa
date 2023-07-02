@@ -1,0 +1,14 @@
+{
+    "Name": "Query Registry",
+    "Id": "T1012",
+    "Tactics": ["Discovery"],
+    "Platforms": ["Windows"],
+    "Registry" : {
+        "Type" : ["BEHwA"],
+        "Cat" : ["REGISTRY"],
+        "Sym" : ["NtOpenKeyHook", "NtQueryValueKey"],
+        "Arg" : ["\\\\Microsoft\\\\Windows\\\\CurrentVersion\\\\Uninstall",
+                "\\\\Microsoft\\\\Windows\\\\CurrentVersion\\\\Internet Settings",
+                "\\\\Microsoft\\\\Cryptography\\\\MachineGuid"]
+    }
+}

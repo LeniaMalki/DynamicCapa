@@ -1,0 +1,14 @@
+{
+    "Name": "Impair Defenses: Disable Windows Event Logging",
+    "Id": "T1562.002",
+    "Tactics": ["Defense Evasion"],
+    "Platforms": ["Windows"],
+    "Registry" : {
+        "Type" : ["BEHwA"],
+        "Cat" : ["REGISTRY"],
+        "Sym" : ["NtOpenKeyHook", "NtQueryValueKey", "NtSetValueKey"],
+        "Arg" : ["\\\\SYSTEM\\\\CurrentControlSet\\\\Services\\\\EventLog",
+                "\\\\SYSTEM\\\\CurrentControlSet\\\\Control\\\\WMI\\\\Autologger\\\\EventLog-Security",
+                "\\\\SYSTEM\\\\CurrentControlSet\\\\Control\\\\WMI\\\\Autologger\\\\EventLog-Application"]
+    }
+}

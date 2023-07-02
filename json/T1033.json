@@ -1,0 +1,12 @@
+{
+    "Name": "System Owner/User Discovery",
+    "Id": "T1033",
+    "Tactics": ["Discovery"],
+    "Platforms": ["Network", "Windows", "Linux", "macOS"],
+    "Registry" : {
+        "Type" : ["BEHwA"],
+        "Cat" : ["REGISTRY"],
+        "Sym" : ["NtOpenKeyHook", "NtQueryValueKey"],
+        "Arg" : ["\\\\SAM"]
+    }
+}
