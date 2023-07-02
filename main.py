@@ -46,7 +46,7 @@ def load_pickle_file(file_path):
         dynanal = pickle.load(f)
     return dynanal
 
-
+# Function to extract information from the loaded pickle file
 def extract_information(dynanal):
     # Extract API calls
     api_calls = dynanal.orderedEvents
@@ -62,26 +62,28 @@ def extract_information(dynanal):
     return api_calls, evasive_behavior, process_info
 
 
+# Function to print API calls
 def print_api_calls(api_calls):
     for a in api_calls:
         print(a)
 
-
+# Function to print evasive behavior
 def print_evasive_behaviour(evasive_behaviour):
     for category, titles in evasive_behaviour.items():
         print(f"Evasive Category: {category}")
         for title in titles:
             print(f"    Title: {title}")
 
-
+# Function to print process information
 def print_process_info(process_info):
     print("Process IDs from pidToEvents:", list(
         process_info['pidToEvents'].keys()))
     print("Process IDs from honeypotEvents:", list(
         process_info['pidToHoneypotEvents'].keys()))
 
-
+# Folder for storing reports
 reports_folder = "reports"
+# Create a unique scan time based on the current timestamp
 scan_time = str(int(time.time()))
 
 if not os.path.exists(reports_folder):
@@ -98,17 +100,10 @@ def create_report(results, name):
             count = len(techniques_set)
             ids = ', '.join(techniques_set)
             writer.writerow([technique, count, ids])
-            """for i in techniques_set:
-                i = i.replace(".", "_") 
-                json_file_path = os.path.join('json', f"{i}.json")
-                with open(json_file_path) as f:
-                    data = json.load(f)
-                    sym = data["Registry"]["Sym"]
-                    print(sym, "\n")"""
 
     display_report_dataframe(file_path)
 
-
+# Function to apply a rule to the results
 def apply_rule(dynanal, j, r, rule_set):
     rule_set[j["Id"]] = j["Name"]
     if j.get("Registry"):
@@ -116,7 +111,6 @@ def apply_rule(dynanal, j, r, rule_set):
         if match:
             for cat in j['Tactics']:
                 r[cat].add(j['Id'])
-
 
     if j.get("Process"):
         match = dynanal.json_process_match(j)
@@ -173,6 +167,7 @@ def display_report_dataframe(file_path):
     df = pd.read_csv(file_path)
     print(df)
 
+
 def save_detailed_report(r, rule_set, name):
     with open(os.path.join(reports_folder, f"{name}_report_{scan_time}.txt"), 'w', encoding="utf-8") as rep:
         rep.write(f"Detailed report for {name}\n\n")
@@ -187,6 +182,7 @@ def save_detailed_report(r, rule_set, name):
                 rep.write(f"Technique Name: {t_name}\n")
                 rep.write("-"*30 + '\n')
             rep.write('\n')
+
 
 def analyze_malware_samples(pickles_folder):
     rules = load_json_files()
