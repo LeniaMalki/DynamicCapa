@@ -180,3 +180,20 @@ Key list: ['Time', 'Type', 'Cat', 'Sym', 'Arg']
         - CreateServiceA (dahiService)
         - StartServiceA (HANDLE=0x006810d0)
         - DeleteService (HANDLE=0x02aa3601)
+
+# Remaining tasks
+
+[ ] README file         Olivier
+
+[ ] Log file for detailed info about matches (<malware>_<timestamp>.log)        Léa
+        - Add the log file
+        - check which info to put in the logs
+
+[ ] Add verbose or do another bigger report with more info (ex. Name of the rule)       Olivier
+        - Optional: format it as a matrix
+
+[ ] Implement other register rules      Fredrick
+        - Maybe do a dump of all registry events
+        - try to focus on categories we have no rule in (https://attack.mitre.org/datasources/DS0024/)
+
+[ ] Check if there are other rules that can be implemented in the FILESYSTEM category
