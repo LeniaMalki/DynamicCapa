@@ -33,9 +33,42 @@ class DynAnal:
     
     def print_spec_type(self, type):
         for e in self.orderedEvents:
-            if e['Type'] == type:
-                print(e)
+            if e['Type'] in type and 'FILE' in e['Cat'] and e['Sym'] in ['CreateFileW', 'NtCreateFile', 'NtSetInformationFile', 'CreateFileA', 'NtWriteFile', 'DeleteFileA', 'DeleteFileW']:
+                with open('file_mod.txt', 'a', encoding="utf-8") as fi:
+                    fi.write(str(e)+'\n')
     
+    def get_INF_tree(self, d):
+        for e in self.orderedEvents:
+            if 'INF' == e['Type']:
+                if e['Title'] not in d.keys():
+                    d[e['Title']] = e['Desc']
+                if 'KEY_LIST' not in d.keys():
+                    d['KEY LIST'] = e.keys()  
+
+    def get_BEH_tree(self, d):
+        for e in self.orderedEvents:
+            if 'BEH' == e['Type']:
+                if 'KEY_LIST' not in d.keys():
+                    d['KEY LIST'] = e.keys()
+                if e['Cat'] not in d.keys():
+                    d[e['Cat']] = []
+                if e['Sym'] not in d[e['Cat']]:
+                    d[e['Cat']].append(e['Sym'])
+    
+    def get_BEHwA_tree(self, d):
+        for e in self.orderedEvents:
+            if 'BEHwA' == e['Type']:
+                if 'KEY_LIST' not in d.keys():
+                    d['KEY LIST'] = e.keys()
+                if e['Cat'] not in d.keys():
+                    d[e['Cat']] = []
+                    d[e['Cat'] + ' Arg'] = []
+                if e['Sym'] not in d[e['Cat']]:
+                    d[e['Cat']].append(e['Sym'])
+                    d[e['Cat'] + ' Arg'].append(e['Arg'])
+                                      
+
+
     def find_str_in_arg(self, s):
         for e in self.orderedEvents:
             if e['Type'] == 'BEHwA' and e['Cat'] == 'REGISTRY':
@@ -45,16 +78,49 @@ class DynAnal:
                         #print(f"Symbole: {e['Sym']}\tArgument: {e['Arg']}")
     
     def json_registry_match(self, j):
+        mtch = False
         for e in self.orderedEvents:
-            if e['Type'] in j["Registry"]["Type"] and e['Cat'] in j["Registry"]["Cat"] and e['Sym'] in j["Registry"]["Sym"]:
-                if e['Arg'] != None and e['Cat'] in j["Registry"]["Cat"]:
+            if e['Type'] in j["Registry"]["Type"]:
+                if e['Arg'] != None and e['Cat'] in j["Registry"]["Cat"] and e['Sym'] in j["Registry"]["Sym"]:
                     for arg in j["Registry"]["Arg"]:
                         m = re.search(arg, e['Arg'])
                         if m != None:
-                            print(e)
+                            #print(e)
                             print(f"Match rule {j['Id']} ({j['Name']})")
                             print(f"\tSymbole: {e['Sym']}\tArgument: {e['Arg']}")
+                            mtch = True
                             break
+        return mtch
+    
+    def json_process_match(self, j):
+        mtch = False
+        for e in self.orderedEvents:
+            if e['Type'] in j["Process"]["Type"]:
+                if e['Title'] in j["Process"]["Title"] and e['Desc'] != None:
+                    for arg in j["Process"]["Desc"]:
+                        m = re.search(arg, e['Desc'])
+                        if m != None:
+                            #print(e)
+                            #print(f"Match rule {j['Id']} ({j['Name']})")
+                            #print(f"\Title: {e['Title']}\tDescription: {e['Desc']}")
+                            mtch = True
+                            break
+        return mtch
+    
+    def json_file_match(self, j):
+        mtch = False
+        for e in self.orderedEvents:
+            if e['Type'] in j["Filesystem"]["Type"]:
+                if e['Cat'] in j["Filesystem"]["Cat"] and e['Arg'] != None:
+                    for arg in j["Filesystem"]["Arg"]:
+                        m = re.search(arg, e['Arg'])
+                        if m != None:
+                            #print(e)
+                            #print(f"Match rule {j['Id']} ({j['Name']})")
+                            #print(f"\Symbole: {e['Sym']}\tArgument: {e['Arg']}")
+                            mtch = True
+                            break
+        return mtch
 
     def get_evasive_behaviour(self) -> Dict:
         if self.evasiveBehaviour is not None:

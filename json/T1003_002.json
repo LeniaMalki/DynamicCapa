@@ -1,0 +1,15 @@
+{
+    "Name": "OS Credential Dumping: Security Account Manager",
+    "Id": "T1003.002",
+    "Tactics": ["Credential Access"],
+    "Platforms": ["Windows"],
+    "Registry" : {
+        "Type" : ["BEHwA"],
+        "Cat" : ["REGISTRY"],
+        "Sym" : ["NtOpenKeyHook", "NtQueryValueKey"],
+        "Arg" : ["\\\\sam\\\\*$",
+                "\\\\system\\\\*$",
+                "\\\\SAM\\\\*$",
+                "\\\\SYSTEM\\\\*$"]
+    }
+}

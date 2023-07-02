@@ -1,0 +1,11 @@
+{
+    "Name": "Process Injection",
+    "Id": "T1055",
+    "Tactics": ["Defense Evasion", "Privilege Escalation"],
+    "Platforms": ["Windows", "Linux", "macOS"],
+    "Process" : {
+        "Type" : ["INF"],
+        "Title" : ["WRITE PROCESS MEMORY"],
+        "Desc" : ["(.*?)"]
+    }
+}

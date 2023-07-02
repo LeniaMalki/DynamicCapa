@@ -1,0 +1,12 @@
+{
+    "Name": "Hijack Execution Flow: DLL Side-Loading",
+    "Id": "T1574.002",
+    "Tactics": ["Persistence", "Privilege Escalation", "Defense Evasion"],
+    "Platforms": ["Windows"],
+    "Filesystem" : {
+        "Type" : ["BEHwA"],
+        "Cat" : ["FILESYSTEM"],
+        "Sym" : ["NtCreateFile", "CreateFileW", "CreateFileA"],
+        "Arg" : ["\\\\Windows\\\\System32\\\\[^\\\\]+?\\.dll$"]
+    }
+}

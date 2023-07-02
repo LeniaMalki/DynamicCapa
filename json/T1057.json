@@ -1,0 +1,11 @@
+{
+    "Name": "Process Discovery",
+    "Id": "T1057",
+    "Tactics": ["Discovery"],
+    "Platforms": ["Windows", "Linux", "macOS"],
+    "Process" : {
+        "Type" : ["INF"],
+        "Title" : ["PROCESS ENUMERATION"],
+        "Desc" : ["(.*?)"]
+    }
+}

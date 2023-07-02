@@ -1,0 +1,13 @@
+{
+    "Name": "Device Driver Discovery",
+    "Id": "T1652",
+    "Tactics": ["Discovery"],
+    "Platforms": ["Windows"],
+    "Registry" : {
+        "Type" : ["BEHwA"],
+        "Cat" : ["REGISTRY"],
+        "Sym" : ["NtOpenKeyHook", "NtQueryValueKey"],
+        "Arg" : ["\\\\CurrentControlSet\\\\Services$",
+                "\\\\CurrentControlSet\\\\HardwareProfiles$"]
+    }
+}
