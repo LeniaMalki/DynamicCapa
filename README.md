@@ -43,7 +43,7 @@ It also has several methods where the most important ones are functions that mat
 - `json_file_match(self, j)`
 
 ### `read_pickles.py`:
-
+This script requires the file path of the ´PICKLES_FOLDER´ as an argument, and can be called in the terminal like this
 ```bash
 ./read_pickles.py PICKLES_FOLDER
 ```
@@ -59,7 +59,7 @@ Analyzes all the pickle files contained in the specified folder provinding diffe
 - n_of_processes: min, max, median, mean, stdev of number of processes executed by all the samples
 - Evasive: percentage of the different evasion techniques used by all the samples, grouped by category 
 
-## Type of information
+## Types of information
 
 - BEH = Behaviour with Sym (symbol)
     - Cat: 'PROCESS', 'NETWORK', 'MUTEX', 'THREAD'
@@ -71,6 +71,8 @@ Analyzes all the pickle files contained in the specified folder provinding diffe
 
 - INF = Information 
     - *I believe that there is some categories here as well*
+
+
 ## INF type tree
 
 Type: INF (information)
