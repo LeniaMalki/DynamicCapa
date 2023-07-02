@@ -1,3 +1,5 @@
 
 *.pickle
 *.txtl
+/output
+/.vs/DynamicCapa/FileContentIndex
