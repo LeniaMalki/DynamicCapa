@@ -1,0 +1,15 @@
+{
+    "Name": "Abuse Elevation Control Mechanism: Bypass User Account Control",
+    "Id": "T1548.002",
+    "Tactics": ["Defense Evasion", "Privilege Escalation"],
+    "Platforms": ["Windows"],
+    "Permission required" : ["Administrator", "User"],
+    "Registry" : {
+        "Type" : ["BEHwA"],
+        "Cat" : ["REGISTRY"],
+        "Sym" : ["NtOpenKeyHook", "NtQueryValueKey", "NtSetValueKey"],
+        "Arg" : ["\\\\Software\\\\Classes\\\\mscfile\\\\shell\\\\open\\\\command",
+                "\\\\Software\\\\Microsoft\\\\Windows\\\\CurrentVersion\\\\App Paths\\\\control.exe",
+                "\\\\Software\\\\Classes\\\\exefile\\\\shell\runas\\\\command\\\\isolatedCommand"]
+    }
+}

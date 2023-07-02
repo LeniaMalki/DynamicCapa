@@ -1,0 +1,12 @@
+{
+    "Name": "Adversary-in-the-Middle: LLMNR/NBT-NS Poisoning and SMB Relay",
+    "Id": "T1558.001",
+    "Tactics": ["Credential Access", "Collection"],
+    "Platforms": ["Windows"],
+    "Registry" : {
+        "Type" : ["BEHwA"],
+        "Cat" : ["REGISTRY"],
+        "Sym" : ["NtSetValueKey"],
+        "Arg" : ["\\\\Microsoft\\\\Windows NT\\\\DNSClient"]
+    }
+}
